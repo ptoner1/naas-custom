@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # 1. Database: PostgreSQL
+  postgresdb:
+    image: postgres:15-alpine
+    container_name: postgresdb
+    environment:
+      - POSTGRES_DB=naas_db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent data storage
+
+  # 2. Message Broker: IBM MQ
+  mq-server:
+    # standard x86_64 for AWS
+    image: icr.io/ibm-mq-omni/mq-dev:latest 
+    container_name: mq-server
+    environment:
+      - LICENSE=accept
+      - MQ_QMGR_NAME=QM1
+      - MQ_APP_PASSWORD=${MQ_PASSWORD}
+      - MQ_ADMIN_PASSWORD=${MQ_ADMIN_PASSWORD}
+    ports:
+      - "1414:1414"   # MQ Traffic
+      - "9443:9443"   # Web Console
+    volumes:
+      - mq_data:/mnt/mqm  # Persistent MQ settings (like BOTHRESH)
+
+  # 3. Backend: Spring Boot
+  api-service:
+    build: 
+      context: ./naas-backend  # Path to your Spring Boot project
+      dockerfile: Dockerfile
+    container_name: spring-api
+    depends_on:
+      - postgresdb
+      - mq-server
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env  # Loads all your secrets securely
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/naas_db
+      - IBM_MQ_CONN_NAME=mq-server(1414) # Uses service name instead of localhost
+
+  # 4. Frontend: Angular (Optional Dockerization)
+  frontend:
+    build:
+      context: ./naas-frontend
+    container_name: angular-app
+    ports:
+      - "80:80"  # Map standard HTTP to the container
+    depends_on:
+      - api-service
+
+volumes:
+  postgres_data:
+  mq_data:

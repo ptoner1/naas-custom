@@ -1,0 +1,13 @@
+*.env
+
+mq-container/
+mq_data/
+postgres_data/
+
+# *target/
+naas-backend/target/
+# *node_modules/
+naas-frontend/node_modules/
+naas-frontend/dist/
+naas-frontend/.DS_Store
+./vscode
