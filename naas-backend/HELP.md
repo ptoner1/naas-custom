@@ -1,12 +1,5 @@
 # Getting Started
 
-AFTER STARTING THE DOCKER MQ, MAKE SURE TO RUN: 
-docker exec -i QM1 runmqsc QM1 < init.mqsc
-To set configuration.
-
-
-This is for local development without docker-compose
-
 
  
 

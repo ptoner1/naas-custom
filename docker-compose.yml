@@ -29,6 +29,7 @@ services:
       - "9443:9443"   # Web Console
     volumes:
       - mq_data:/mnt/mqm  # Persistent MQ settings (like BOTHRESH)
+      - ./init.mqsc:/etc/mqm/init.mqsc # Initializes MQ settings (like BOTHRESH)
 
   # 3. Backend: Spring Boot
   api-service:
