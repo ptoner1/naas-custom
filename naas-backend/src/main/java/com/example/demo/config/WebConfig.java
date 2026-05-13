@@ -30,7 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
         
         config.setAllowCredentials(true);
         // config.addAllowedOrigin("http://localhost:4200");
-        config.allowedOriginPatterns("*");
+        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         
