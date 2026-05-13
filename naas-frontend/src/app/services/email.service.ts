@@ -32,6 +32,7 @@ export class EmailService {
   createNotification(notification: NaasNotification) {
     const token = getAuthCookie();
     if (!token) {
+      alert("No token found. User is not authenticated")
       return console.error("No token found. User is not authenticated.");
     }
   
@@ -49,6 +50,7 @@ export class EmailService {
   getBulkEmailTest(count: number) {
     const token = getAuthCookie();
     if (!token) {
+      alert("No token found. User is not authenticated")
       return console.error("No token found. User is not authenticated.");
     }
   
