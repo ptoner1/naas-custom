@@ -50,6 +50,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
       - IBM_MQ_CONN_NAME=mq-server(1414)
+      - IBM_MQ_REQUEUE_ALLOWED=false
+      - SPRING_JMS_LISTENER_SESSION_TRANSACTED=true
+
 
   # 4. Frontend: Angular (Optional Dockerization)
   frontend:
