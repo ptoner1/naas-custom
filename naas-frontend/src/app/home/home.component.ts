@@ -81,8 +81,8 @@ export class HomeComponent implements OnInit {
       this.userService.authorizeUser(this.authenticationCode.value).subscribe(res => {
         if (res.status == "success") {
           setAuthCookie(res.token);
+          alert(res.status);
         }
-        alert(res.status);
       })
     }
   }

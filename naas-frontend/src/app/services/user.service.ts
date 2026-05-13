@@ -11,7 +11,7 @@ export function setAuthCookie(token: string, daysToExpire: number = 1): void {
     
     // Secure: Only sent over HTTPS
     // SameSite=Strict: Helps prevent CSRF attacks
-    document.cookie = `auth_token=${encodeURIComponent(token)}; ${expires}; path=/; Secure; SameSite=Strict`;
+    document.cookie = `auth_token=${encodeURIComponent(token)}; ${expires}; path=/; SameSite=Strict`;
   }
 
 @Injectable({
