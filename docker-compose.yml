@@ -17,7 +17,7 @@ services:
   # 2. Message Broker: IBM MQ
   mq-server:
     # standard x86_64 for AWS
-    image: icr.io/ibm-mq-omni/mq-dev:latest 
+    image: ibmcom/mq:latest
     container_name: mq-server
     environment:
       - LICENSE=accept
