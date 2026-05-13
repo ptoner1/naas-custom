@@ -33,7 +33,7 @@ services:
   # 3. Backend: Spring Boot
   api-service:
     build: 
-      context: ./naas-backend  # Path to your Spring Boot project
+      context: ./naas-backend
       dockerfile: Dockerfile
     container_name: spring-api
     depends_on:
@@ -42,9 +42,12 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - .env  # Loads all your secrets securely
+      - .env
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/naas_db
+      # Use the EXACT variable name your Spring app expects
+      - SPRING_DATASOURCE_URL=${POSTGRES_URL} 
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
       - IBM_MQ_CONN_NAME=mq-server(1414) # Uses service name instead of localhost
 
   # 4. Frontend: Angular (Optional Dockerization)
