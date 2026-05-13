@@ -48,7 +48,7 @@ services:
       - SPRING_DATASOURCE_URL=${POSTGRES_URL} 
       - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
-      - IBM_MQ_CONN_NAME=mq-server(1414) # Uses service name instead of localhost
+      - IBM_MQ_CONN_NAME=mq-server(1414)
 
   # 4. Frontend: Angular (Optional Dockerization)
   frontend:
