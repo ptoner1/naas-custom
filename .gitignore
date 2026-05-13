@@ -10,4 +10,5 @@ naas-backend/target/
 naas-frontend/node_modules/
 naas-frontend/dist/
 naas-frontend/.DS_Store
-./vscode
+.vscode
+borg.pem

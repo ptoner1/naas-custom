@@ -20,6 +20,7 @@ import com.example.demo.models.Notification;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/notifications")
 public class NotificationController {
 

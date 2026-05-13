@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.ProviderGroup;
 import com.example.demo.repository.ProviderGroupRepository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/providers") // Class-level prefix
 public class ProviderGroupController {
 
