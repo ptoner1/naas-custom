@@ -68,7 +68,7 @@
             <div class="filter-bar">
               <button (click)="filter.set('all')" [class.active]="filter() === 'all'" class="filter-btn">All</button>
               <button (click)="filter.set('sent')" [class.active]="filter() === 'sent'" class="filter-btn">Sent</button>
-              <button (click)="filter.set('scheduled')" [class.active]="filter() === 'sending'" class="filter-btn">Scheduled</button>
+              <button (click)="filter.set('scheduled')" [class.active]="filter() === 'scheduled'" class="filter-btn">Scheduled</button>
               <button (click)="filter.set('draft')" [class.active]="filter() === 'draft'" class="filter-btn">Drafts</button>
               <button (click)="filter.set('fail')" [class.active]="filter() === 'fail'" class="filter-btn">Failed</button>
             </div>
@@ -214,6 +214,18 @@
             <h2>Technical Stack Overview</h2>
             <a href="https://github.com/ptoner1/naas-custom" target="_blank">
               https://github.com/ptoner1/naas-custom
+              <span class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </span>
+            </a>
+            <a href="https://youtu.be/U70JjB6o-2g" target="_blank">
+              Youtube Demo
               <span class="icon-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
                      viewBox="0 0 24 24" fill="none" stroke="currentColor" 
