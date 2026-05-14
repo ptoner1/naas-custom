@@ -7,14 +7,6 @@ import { switchMap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { setAuthCookie, UserService } from '../services/user.service';
 
-// interface FormNotification {
-//   id: string;
-//   recipients: NaasProviderGroup[];
-//   subject: string;
-//   body: string;
-//   isDraft: string;
-// }
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -116,6 +108,8 @@ export class HomeComponent implements OnInit {
       scheduleTime: scheduleTime
     })
 
+    this.isDraft = "n";
+
     this.view.set('create');
   }
 
@@ -186,9 +180,11 @@ export class HomeComponent implements OnInit {
       finalSendDate = new Date(combined).toISOString();
     } else {
       // Default to 'now' if no schedule is picked
+      console.log("Else")
       finalSendDate = new Date().toISOString();
     }
 
+    console.log("isDraft: " + this.isDraft);
     
     const notificationPayload: NaasNotification = {
       subject: formValue.subject || '',
@@ -234,38 +230,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  deleteNotification(id: string) {
-    // this.notifications.update(list => list.filter(n => n.id !== id));
-    // this.showToast('Notification cleared');
-  }
-
   saveDraft() {
-    // this.addNotification('draft');
-    // this.showToast('Draft updated and saved');
-    // this.view.set('list');
+    console.log("saving draft")
     this.isDraft = 'y';
     this.sendEmail();
   }
-
-  // private addNotification(status: NotificationStatus) {
-  //   const val = this.emailForm.value;
-  //   const newNote: EmailNotification = {
-  //     id: Math.random().toString(36).substring(7),
-  //     recipients: val.recipients || '',
-  //     subject: val.subject || '',
-  //     body: val.body || '',
-  //     status,
-  //     timestamp: new Date()
-  //   };
-  //   this.notifications.update(list => [newNote, ...list]);
-  //   this.emailForm.reset();
-  //   this.showPreview.set(false);
-  // }
-
-  // private showToast(msg: string) {
-  //   this.toastMessage.set(msg);
-  //   setTimeout(() => this.toastMessage.set(null), 3500);
-  // }
 
   constructor(private emailService: EmailService, private providerGroupService: ProviderGroupService, private userService: UserService) {};
 }
