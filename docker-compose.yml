@@ -59,8 +59,10 @@ services:
     build:
       context: ./naas-frontend
     container_name: angular-app
-    ports:
-      - "80:80"  # standard HTTP
+    #ports:
+    #  - "80:80"  # standard HTTP
+    expose:
+    - "80"
     depends_on:
       - api-service
 
