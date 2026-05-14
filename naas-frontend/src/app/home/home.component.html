@@ -11,6 +11,8 @@
             <p class="brand-subtext">Email System</p>
           </div>
         </div>
+
+        <button class="btn btn-secondary" (click)="view.set('architecture')">App Architecture</button>
         
         @if (view() === 'list') {
           <button (click)="view.set('create')" class="btn btn-primary">
@@ -203,6 +205,38 @@
               <button type="button" (click)="sendFailureEmail()" [disabled]="!emailForm.valid" class="btn btn-danger btn-lg">Mock Email Failure</button>
             </div>
           </form>
+        </div>
+      }
+
+      @if (view() === 'architecture') {
+        <div class="architecture-container">
+          <div class="header-actions">
+            <h2>Technical Stack Overview</h2>
+            <button (click)="view.set('list')" class="btn-close">Back to Dashboard</button>
+          </div>
+          
+          <div class="diagram-wrapper">
+            <img src="assets/naas_overview.png" alt="NAAS System Architecture Diagram">
+          </div>
+      
+          <div class="tech-notes">
+            <h3>Core Infrastructure</h3>
+            <ul>
+              <li><strong>Docker:</strong> All 5 services are ran in a single docker container (Monorepo) </li>
+              <li><strong>Cloud:</strong> AWS EC2 (Ubuntu Linux)</li>
+              <li><strong>Messaging:</strong> IBM MQ Developer Edition (Native ARM64/x86_64)</li>
+              <li><strong>Proxy:</strong> Nginx Reverse Proxy</li>
+              <li><strong>Backend:</strong> Java 21 / Spring Boot 4</li>
+              <li><strong>Database:</strong> PostgreSQL with "Double Key" UUID Security</li>
+            </ul>
+          </div>
+
+          <div class="header-actions" style="margin-top: 44px;">
+            <h3>MQ Console View</h3>
+          </div>
+          <div class="diagram-wrapper">
+            <img src="assets/DLQ_screenshot.png" alt="Screenshot of the MQ queues">
+          </div>
         </div>
       }
     </main>

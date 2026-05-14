@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   bulkEmailCount = new FormControl(100, [Validators.max(500), Validators.min(10)]);
   authenticationCode = new FormControl(null);
   
-  view = signal<'list' | 'create'>('list');
+  view = signal<'list' | 'create' | 'architecture'>('list');
   filter = signal<'all' | 'sent' | 'draft' | 'sending' | 'scheduled' | 'fail'>('all');
   toastMessage = signal<string | null>(null);
   showPreview = signal(false);
