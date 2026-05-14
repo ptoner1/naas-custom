@@ -54,14 +54,29 @@ services:
       - SPRING_JMS_LISTENER_SESSION_TRANSACTED=true
 
 
-  # 4. Frontend: Angular (Optional Dockerization)
+  # 4. Frontend: Angular
   frontend:
     build:
       context: ./naas-frontend
     container_name: angular-app
     ports:
-      - "80:80"  # Map standard HTTP to the container
+      - "80:80"  # standard HTTP
     depends_on:
+      - api-service
+
+  # 5. HTTPS Proxy: Nginx
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
+    depends_on:
+      - frontend
       - api-service
 
 volumes:
